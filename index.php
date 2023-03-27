@@ -7,4 +7,3 @@ include 'rotas.php';
 
 include 'Controller/EnderecoController.php';
 
-AppApi\Controller\EnderecoController::teste();

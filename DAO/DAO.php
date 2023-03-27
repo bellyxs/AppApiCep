@@ -2,7 +2,7 @@
 
 namespace AppApi\DAO;
 
-use PDO;
+use \PDO;
 use PDOException;
 
 abstract class DAO extends PDO
