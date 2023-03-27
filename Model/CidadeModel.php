@@ -2,9 +2,10 @@
 
 namespace AppApi\Model;
 
-use App\Model\EnderecoDAO;
+use AppApi\DAO\EnderecoDAO;
 
-class CidadeModel extends CidadeModel
+
+class CidadeModel extends Model
 {
     public $id_cidade, $descricao, $uf, $codigo_ibge, $ddd;
 
@@ -12,6 +13,6 @@ class CidadeModel extends CidadeModel
     {
         $dao = new EnderecoDAO();
 
-        $this->rows = $dao->selectCidadeByUf($uf);
+        $this->rows = $dao->selectCidadesByUf($uf);
     }
 }

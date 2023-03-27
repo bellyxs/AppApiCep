@@ -45,4 +45,20 @@ class EnderecoModel extends Model
             echo $e->getMessage();
         }
     }
+
+    public function getLogradouroByBairroAndCidade($bairro, $id_cidade)
+    {
+
+    }
+
+    public function getCidadesByUf($uf)
+    {
+        try {
+            $dao = new EnderecoDAO();
+
+            $this->rows = $dao->selectCidadesByUf($uf);
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+    }
 }

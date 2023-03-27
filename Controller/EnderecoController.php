@@ -2,35 +2,110 @@
 
 namespace AppApi\Controller;
 
+use AppApi\DAO\EnderecoDAO;
+use AppApi\Model\CidadeModel;
+use AppApi\Model\EnderecoModel;
+use Exception;
+
 include 'Controller.php';
 
 class EnderecoController extends Controller
 
 {
-    public static function teste()
+    public static function getLogradouroByCep() : void
     {
-        $cidades = ['Jaú', 'Bariri', 'Itapuí', 'DC'];
+        try
+        {
+            $cep = parent::getIntFromUrl(
+                isset($_GET['cep']) ? $_GET['cep'] : null);
 
-        parent::getRespondeAsJSON($cidades);
+            $model = new EnderecoModel();
+
+            parent::getResponseAsJSON($model->getLogradouroByCep($cep));
+            
+    } catch (Exception $e) {
+
+        parent::getExceptionAsJSON($e);
+
+        }
     }
 
-    public static function getLogradouroByCep():void
-    {
+    public static function getCepByLogradouro():void
+    {   
+        try
+        {
+            $logradouro = $_GET['logradouro'];
+
+            $model = new EnderecoModel();
+            $model->getCepByLogradouro($logradouro);
+
+            parent::getResponseAsJSON($model->rows);           
+
+        }catch (Exception $e) {
+
+            parent::getExceptionAsJSON($e);
+        }
 
     }
 
     public static function getLogradouroByBairroAndCidade()
     {
+        try
+        {
+            $bairro =
+            parent::getStringFromUrl(
+                isset($_GET['bairro']) ? $_GET['bairro'] : null,
+                'bairro');
 
+            $id_cidade = parent::getIntFromUrl(
+                isset($_GET['id_cidade']) ? $_GET['id_cidade'] : null,
+                'cep');
+
+            $model = new EnderecoModel();
+            $model->getLogradouroByBairroAndCidade($bairro, $id_cidade);
+
+            parent::getResponseAsJSON($model->rows);
+
+        }catch (Exception $e) {
+
+            parent::getExceptionAsJSON($e);
+        }
     }
 
+    public static function getBairrosByIdCidade()
+    {
+        try
+        {
+            $id_cidade = parent::getIntFromUrl(
+                isset($_GET['id_cidade']) ? $_GET['id_cidade'] : null);
+
+                $model = new EnderecoModel();
+                $model->getBairrosByIdCidade($id_cidade);
+
+                parent::getResponseAsJSON($model->rows);
+                
+            } catch (Exception $e) {
+
+                parent::getExceptionAsJSON($e);
+            }
+        }
+        
     public static function getCidadesByUf()
     {
+        try
+        {
+            $uf = $_GET['uf'];
 
-    }
+            $model = new CidadeModel();
+            $model->getCidadesByUf($uf);
 
-    public static function getBairrosByCidade()
-    {
-        
+            parent::getResponseAsJSON($model->rows);
+
+            
+        }catch (Exception $e) {
+
+            parent::getExceptionAsJSON($e);
+        }
+
     }
 }
