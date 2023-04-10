@@ -48,7 +48,13 @@ class EnderecoModel extends Model
 
     public function getLogradouroByBairroAndCidade($bairro, $id_cidade)
     {
+        try {
+            $dao = new EnderecoDAO();
 
+            $this->rows = $dao->selectLogradouroByBairroAndCidade($bairro, $id_cidade);
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
     }
 
     public function getCidadesByUf($uf)

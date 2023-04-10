@@ -10,19 +10,19 @@ switch ($url) {
      */
 
     case '/endereco/by-cep':
-        EnderecoController::getLogradouroByCep(); /*http://localhost:8000/endereco/by-cep?cep=17210580*/
+        EnderecoController::getLogradouroByCep(); /*http://localhost:8000/endereco/by-cep?cep=17210580*//*OK/
         break;
 
     case '/logradouro/by-bairro':
-        EnderecoController::getLogradouroByBairroAndCidade(); /*http://localhost:8000/logradouro/by-bairro?id_cidade=4874&bairro=Jardim América*/
+        EnderecoController::getLogradouroByBairroAndCidade(); /*http://localhost:8000/logradouro/by-bairro?id_cidade=4874&bairro=Jardim América*//*OK/
         break;
 
     case '/cidade/by-uf':
-        EnderecoController::getCidadesByUf();/*http://localhost:8000/cidade/by-uf?uf=SP*/
+        EnderecoController::getCidadesByUf();/*http://localhost:8000/cidade/by-uf?uf=SP*//*OK/
         break;
 
     case '/bairro/by-cidade':
-        EnderecoController::getBairrosByIdCidade();/*http://localhost:8000/bairro/by-cidade?id=4874*/
+        EnderecoController::getBairrosByIdCidade();/*http://localhost:8000/bairro/by-cidade?id_cidade=4874*//*OK*/
         break;
 
         default:
